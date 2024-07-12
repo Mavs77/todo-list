@@ -27,7 +27,10 @@ app.use(express.json());
 app.get('/', (req, res)=>{
     db.collection('ClusterTODO').find().toArray()
     .then(data => {
-        res.render('index.ejs', {items: data})
+        db.collection('ClusterTODO').countDocuments({completed: false})
+        .then(itemsLeft => {
+            res.render('index.ejs', {items: data, left: itemsLeft})
+        })
     })
     .catch(error => console.error(error)); 
 })
