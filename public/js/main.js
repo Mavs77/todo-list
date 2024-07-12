@@ -1,4 +1,4 @@
-const deleteBtn = document.querySelectorAll('.fa-trash-can')
+const deleteBtn = document.querySelectorAll('.fa-basketball')
 const item = document.querySelectorAll('.item span')
 const itemCompleted = document.querySelectorAll('.item span.completed')
 
