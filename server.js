@@ -41,3 +41,38 @@ app.post('/addTodo', (req, res) => {
     })
     .catch(error => console.error(error)); 
 })
+
+app.put('/markComplete', (req, res) => {
+    db.collection('ClusterTODO').updateOne({thing: req.body.itemFromJS}, {$set: {
+        completed: true
+    }})
+    .then(result => {
+        console.log('Marked Complete'); 
+        res.json('Marked Complete'); 
+    })
+    .catch(error => console.error(error)); 
+})
+
+app.put('/markUnComplete', (req, res) => {
+    db.collection('ClusterTODO').updateOne({thing: req.body.itemFromJS}, {$set: {
+        completed: false
+    }})
+    .then(result => {
+        console.log('Marked Complete'); 
+        res.json('Marked Complete'); 
+    })
+    .catch(error => console.error(error)); 
+})
+
+app.delete('/deleteItem', (req, res) => {
+    db.collection('ClusterTODO').deleteOne({thing: req.body.itemFromJS})
+    .then(result => {
+        console.log('Todo Deleted'); 
+        res.json('Todo Deleted'); 
+    })
+    .catch(error => console.error(error)); 
+})
+
+app.listen(process.env.PORT || PORT, ()=>{
+    console.log(`Server running on port ${PORT}`); 
+})
