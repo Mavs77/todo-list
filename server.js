@@ -31,3 +31,11 @@ app.get('/', (req, res)=>{
     })
 })
 .catch(error => console.error(error)); 
+
+app.post('/addTodo', (req, res) => {
+    db.collection('ClusterTODO').insertOne({thing: req.body.todoItem, completed: false})
+    .then(result => {
+        console.group('Todo Added'); 
+        res.redirect('/'); 
+    })
+})
