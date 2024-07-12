@@ -29,8 +29,9 @@ app.get('/', (req, res)=>{
     .then(data => {
         res.render('index.ejs', {items: data})
     })
+    .catch(error => console.error(error)); 
 })
-.catch(error => console.error(error)); 
+
 
 app.post('/addTodo', (req, res) => {
     db.collection('ClusterTODO').insertOne({thing: req.body.todoItem, completed: false})
@@ -38,4 +39,5 @@ app.post('/addTodo', (req, res) => {
         console.group('Todo Added'); 
         res.redirect('/'); 
     })
+    .catch(error => console.error(error)); 
 })
